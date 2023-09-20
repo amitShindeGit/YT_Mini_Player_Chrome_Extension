@@ -1,6 +1,6 @@
-/* body {
-  background-color: #1c1c1c;
-} */
+body {
+  background-color: #181818;
+}
 
 iframe .ytp-chrome-controls {
   display: none;
@@ -49,17 +49,8 @@ iframe .ytp-chrome-controls {
   margin: 0 0.5rem 0.5rem 0.5rem;
 }
 
-.icon-btn {
-  background-image: url(../static/Bootstrap-Bootstrap-Bootstrap-pip.512.png);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 100%; /* To fill the dimensions of container (button), or */
-  background-size: 40px auto;
-  width: 3rem;
-}
-
 .overlay-card{
-  position: fixed;
+  /* position: fixed; */
   left: 5%;
   top: 15%;
   padding: .5rem;
@@ -67,6 +58,10 @@ iframe .ytp-chrome-controls {
   width: 25rem !important;
   max-width: max-content !important;
   max-height: 6rem !important;
-  background-color: #ff4742;
   z-index: 999999;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer !important;
 }

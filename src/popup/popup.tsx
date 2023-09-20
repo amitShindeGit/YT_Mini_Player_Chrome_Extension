@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import "./popup.css";
+import { Messages } from "../utils/messages";
 
 const App: React.FC<{}> = () => {
   const [height, setHeight] = useState(50);
@@ -9,19 +10,32 @@ const App: React.FC<{}> = () => {
   );
   const [inputText, setInputText] = useState("");
 
+  const handleOverlayBtn = () => {
+    chrome.tabs.query(
+      {
+        active: true,
+      },
+      (tabs) => {
+        if (tabs?.length > 0) {
+          chrome.tabs.sendMessage(tabs[0].id, Messages.TOGGLE_OVERLAY);
+        }
+      }
+    );
+  };
+
   return (
-    <div>
+    <div style={{backgroundColor: "#181818"}}>
       <button
         className="button-24"
         role="button"
         onClick={() => {
-          setHeight(400);
+          height === 400 ? setHeight(50) : setHeight(400);
           setSrcLink(
             "https://www.youtube.com/embed/LvSuxW8uM_o?si=ozQzu3EpPiT0K54k?fs=0"
           );
         }}
       >
-        Show
+        {height === 400 ? "Half" : "Full"}
       </button>
       <input
         className="input-box"
@@ -30,7 +44,10 @@ const App: React.FC<{}> = () => {
         value={inputText}
         onChange={(e) => setInputText(e.target.value)}
       />
-      <button className="button-24 icon-btn" type="button"></button>
+      <button className="button-24" onClick={handleOverlayBtn} type="button">
+        {" "}
+        Pip{" "}
+      </button>
       <iframe
         id="myFrame"
         width="400"
@@ -39,7 +56,7 @@ const App: React.FC<{}> = () => {
         title="YouTube video player"
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        // allowFullScreen
+        style={{borderRadius: ".5rem"}}
       ></iframe>
     </div>
   );
