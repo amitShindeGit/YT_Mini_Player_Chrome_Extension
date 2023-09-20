@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src * *.youtube.com data: mediastream: blob: filesystem: about: ws: wss: 'unsafe-eval' 'wasm-unsafe-eval' 'unsafe-inline' http://localhost:*; 
+      script-src * *.youtube.com data: blob: 'unsafe-inline' 'unsafe-eval' https://www.youtube.com/ https://www.youtube.com/iframe_api http://localhost:*; 
+      connect-src *  *.youtube.com data: blob: 'unsafe-inline' https://www.youtube.com/iframe_api http://localhost:*; 
+      script-src-elem * *.youtube.com www.youtube.com https://www.youtube.com/iframe_api http://localhost:*;
+      img-src * data: blob: 'unsafe-inline'; 
+      frame-src * data: blob: ; 
+      style-src *  *.youtube.com data: blob: 'unsafe-inline';
+      font-src * data: blob: 'unsafe-inline';
+      frame-ancestors * data: blob: 'unsafe-inline';"
+    />
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root">
+      <div id="existing-iframe-example"></div>
+    </div>
+  </body>
+  <script src="https://www.youtube.com/iframe_api"></script>
+</html>

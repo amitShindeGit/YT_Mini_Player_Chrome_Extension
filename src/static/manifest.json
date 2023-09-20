@@ -1,0 +1,27 @@
+{
+  "name": "YT Music Player Extension",
+  "description": "YT music player",
+  "version": "1.0.0",
+  "manifest_version": 3,
+  "icons": {
+    "16": "icon.jpg",
+    "48": "icon.jpg",
+    "128": "icon.jpg"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "YT music player Extension",
+    "default_icon": "icon.jpg"
+  },
+  "permissions": ["alarms", "contextMenus", "storage"],
+  "options_page": "options.html",
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["contentScript.js"]
+    }
+  ]
+}
