@@ -7,9 +7,7 @@ import { Messages } from "../utils/messages";
 
 const App: React.FC<{}> = () => {
   const [height, setHeight] = useState(60);
-  const [srcLink, setSrcLink] = useState(
-    "https://www.youtube.com/embed/videoseries?fs=0&si=38bbqBSyot0tX0Ru&amp;list=PLF9mJC4RrjIhS4MMm0x72-qWEn1LRvPuW"
-  );
+  const [srcLink, setSrcLink] = useState("");
   const [inputText, setInputText] = useState("");
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -34,6 +32,10 @@ const App: React.FC<{}> = () => {
     chrome.runtime.onMessage.addListener((msg) => {
       if (msg === Messages.TOGGLE_OVERLAY) {
         setIsActive(!isActive);
+      }
+
+      if (msg?.srcLink?.length) {
+        setSrcLink(msg?.srcLink);
       }
     });
   }, [isActive]);
@@ -102,26 +104,29 @@ const App: React.FC<{}> = () => {
             </button>
             <input
               className="input-box"
-              placeholder="Please enter the video embed link here"
+              placeholder="Please enter the youtube video embed link here"
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
               onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  // call your method here
+                if (e.key === "Enter" && inputText?.length) {
                   setSrcLink(inputText);
+                  setInputText("");
                 }
               }}
             />
-            <iframe
-              id="myFrame"
-              width="400"
-              height={height}
-              src={srcLink}
-              title="YouTube video player"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              style={{ borderRadius: ".5rem" }}
-            ></iframe>
+            {srcLink.length ? (
+              <iframe
+                id="myFrame"
+                width="400"
+                height={height}
+                src={srcLink}
+                title="YouTube video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                style={{ borderRadius: ".5rem" }}
+              ></iframe>
+            ) : (
+              <></>
+            )}
           </>
         ) : (
           <></>
