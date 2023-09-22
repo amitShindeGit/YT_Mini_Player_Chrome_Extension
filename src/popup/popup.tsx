@@ -42,11 +42,15 @@ const App: React.FC<{}> = () => {
         onChange={(e) => setInputText(e.target.value)}
         onKeyDown={(e) => {
           if (e.key === "Enter" && inputText?.length) {
-            setSrcLink(inputText);
+            const indexOfQueryParam = inputText?.indexOf('?');
+            const updatedText = inputText.slice(0,indexOfQueryParam+1) + "fs=0&" + inputText.slice(indexOfQueryParam+1);
+            setSrcLink(updatedText);
             setInputText("");
           }
         }}
       />
+
+      
       <button className="button-24" onClick={handleOverlayBtn} type="button">
         {" "}
         Pip{" "}

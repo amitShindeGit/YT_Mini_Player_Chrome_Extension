@@ -4,14 +4,14 @@
   "version": "1.0.0",
   "manifest_version": 3,
   "icons": {
-    "16": "icon.jpg",
-    "48": "icon.jpg",
-    "128": "icon.jpg"
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
   },
   "action": {
     "default_popup": "popup.html",
     "default_title": "YT music player Extension",
-    "default_icon": "icon.jpg"
+    "default_icon": "icon.png"
   },
   "permissions": ["alarms", "contextMenus", "storage"],
   "options_page": "options.html",
